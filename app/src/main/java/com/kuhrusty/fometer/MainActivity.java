@@ -9,20 +9,13 @@ import android.hardware.SensorManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
 
 /**
  * This has a background image of the meter, a TextView for the digital readout,
@@ -192,8 +185,6 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
 
         readout = (TextView)(findViewById(R.id.readout));
         readout.setTypeface(Typeface.createFromAsset(getAssets(),
@@ -205,54 +196,9 @@ public class MainActivity extends AppCompatActivity
         fingerBox.setOnTouchListener(fingerListener);
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        if ((sensor = sensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY)) == null) {
-//        if ((sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ROTATION_VECTOR)) == null) {
-//            Toast.makeText(this, getResources().getString(R.string.no_linear_accelerator),
-//                    Toast.LENGTH_LONG).show();
-        } else {
-//            Toast.makeText(this, getResources().getString(R.string.instructions_shake),
-//                    Toast.LENGTH_SHORT).show();
-        }
-
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
+        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY);
+        //  theoretically we don't care if that's null.
     }
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
-//        return true;
-//    }
-
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
-
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        if (sensor != null) {
-//            sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL);
-//        }
-//    }
 
     @Override
     protected void onPause() {
