@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/metal_background"
+    android:background="@drawable/metal_background2"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.kuhrusty.fometer.MainActivity"
     tools:showIn="@layout/activity_main">
