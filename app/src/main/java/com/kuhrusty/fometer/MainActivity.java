@@ -52,6 +52,9 @@ public class MainActivity extends AppCompatActivity
 
     private SensorManager sensorManager;
     private Sensor sensor = null;
+    //  If the device's gravity sensor is broken, we may have a valid Sensor
+    //  which never reports any values.
+    private boolean heardFromSensor = false;
 
     //  the rest of these guys are used if we don't have a gravity sensor; in
     //  that case, we're looking for a certain number of move events toward the
@@ -107,6 +110,7 @@ public class MainActivity extends AppCompatActivity
         lastX = 0;
         lastY = 0;
         setReadout(currentFsGiven);
+        heardFromSensor = false;
         if (sensor != null) {
             sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL);
         }
@@ -132,7 +136,7 @@ public class MainActivity extends AppCompatActivity
                     if (!calculating) break;
                     ++ticks;
                     targetTime += tickTime;
-                    if (sensor == null) {
+                    if ((sensor == null) || (!heardFromSensor)) {
                         ++updates;
                         if ((updates == updateDecisionPoint) && (zeroHints >= hintThreshold)) {
                             decideZeroFs();
@@ -249,6 +253,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onSensorChanged(SensorEvent ev) {
+        heardFromSensor = true;
         if (ev.values[0] < 0.0) {
             decideZeroFs();
         }
