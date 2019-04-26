@@ -1,5 +1,7 @@
 **WARNING: THIS APP CONTAINS FOUL LANGUAGE**
 
+This is also available as a free download in the Google Play store [here](https://play.google.com/store/apps/details?id=com.kuhrusty.fometer).
+
 This dumb little app is for whipping out when people are saying
 something you don't care about: press the screen, wait for the beeps to
 stop, and show them *quantitatively* how little you care.
